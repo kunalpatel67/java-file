@@ -34,15 +34,19 @@ subjects in which he is passed. Also display how many students have been registe
 far.*/
 
 package OOPs.Assignment2;
+import java.util.Scanner;
 
 public class p1 {
     public static void main(String[] args) {
         student s1 = new student();
         student s2 = new student();
         student s3 = new student();
-        s1.input("Kunal", new int[]{75,78,89,64,52});
-        s2.input("Parth", new int[]{45,78,90,34,56});
-        s3.input("Jenish", new int[]{78,89,90,45,54});
+        s1.input();
+        s2.input();
+        s3.input();
+//        s1.input("Kunal", new int[]{75,78,89,64,52});
+//        s2.input("Parth", new int[]{45,78,90,34,56});
+//        s3.input("Jenish", new int[]{78,89,90,45,54});
 //        s1.show();
 //        s1.totalMarks();
 //        s1.getHighest();
@@ -86,10 +90,24 @@ class student{
         return totalMarks;
     }
 
-    public void input(String name, int[] marks){
-        this.name = name;
-        this.marks = marks;
+    //USER INPUT:
+    public void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter name for student " + rNo + ": ");
+        name = sc.nextLine();
+
+        System.out.println("Enter marks for 5 subjects:");
+        for (int i = 0; i < 5; i++) {
+            System.out.print("Subject " + (i + 1) + ": ");
+            marks[i] = sc.nextInt();
+        }
     }
+
+//    public void input(String name, int[] marks){
+//        this.name = name;
+//        this.marks = marks;
+//    }
+
 
     public void show(){
         System.out.println("Roll No: " + rNo);
