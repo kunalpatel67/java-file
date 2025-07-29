@@ -7,8 +7,7 @@ public class p10_Remove_All_Digits {
 
         for (int i = 0; i < s.length(); i++){
             char currChar = s.charAt(i);
-            //Ascii values like 0 = 48, 1 = 49
-            if (currChar == 48 || currChar == 49 || currChar == 50 || currChar == 51 || currChar == 52 || currChar == 53 || currChar == 54 || currChar == 55 || currChar == 56 || currChar == 57){
+            if (currChar >= '0' && currChar <= '9'){
                 continue;
             }
             else {
