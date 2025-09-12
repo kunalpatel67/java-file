@@ -23,37 +23,39 @@ class binaryTree8 {
     Node8 root;
 
     public void zigZagLevelOrder(Node8 root) {
-        if (root == null) return;
+        Deque<Node8> deque = new LinkedList<>();
+        deque.addFirst(root);
+        boolean flag = true;
 
-        Queue<Node8> queue = new LinkedList<>();
-        queue.add(root);
-        boolean leftToRight = true;
-
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            List<Integer> level = new ArrayList<>();
-
-            for (int i = 0; i < size; i++) {
-                Node8 node = queue.poll();
-                level.add(node.data);
-
-                if (node.left != null) queue.add(node.left);
-                if (node.right != null) queue.add(node.right);
-            }
-
-            if (leftToRight == false) {
-                Collections.reverse(level);
-            }
-
-            for (int val : level) {
-                System.out.print(val + " ");
-            }
-
-            if (leftToRight == true){
-                leftToRight = false;
+        while (!deque.isEmpty()){
+            int size = deque.size();
+            if (flag == true){
+                while (size > 0){
+                    Node8 nn = deque.pollFirst();
+                    System.out.print(nn.data + " ");
+                    if (nn.left != null){
+                        deque.addLast(nn.left);
+                    }
+                    if (nn.right != null){
+                        deque.addLast(nn.right);
+                    }
+                    size--;
+                }
+                flag = false;
             }
             else {
-                leftToRight = true;
+                while (size > 0){
+                    Node8 nn = deque.pollLast();
+                    System.out.print(nn.data + " ");
+                    if (nn.right != null){
+                        deque.addFirst(nn.right);
+                    }
+                    if (nn.left != null){
+                        deque.addFirst(nn.left);
+                    }
+                    size--;
+                }
+                flag = true;
             }
         }
     }
